@@ -8,7 +8,7 @@ async function bootstrap() {
 
   
   app.useGlobalPipes(new ValidationPipe());
-
+//swagger
   
   const config = new DocumentBuilder()
     .setTitle('My Project API')
