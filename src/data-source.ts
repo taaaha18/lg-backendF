@@ -5,11 +5,12 @@ import { Interview } from './interviews/interviews.entity';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  url: process.env.DATABASE_URL, 
+  url: process.env.DATABASE_URL,
   entities: [User, Job, Interview],
   migrations: ['./migrations/*{.ts,.js}'],
   synchronize: false,
   ssl: {
     rejectUnauthorized: false,
   },
+  logging: true,
 });
