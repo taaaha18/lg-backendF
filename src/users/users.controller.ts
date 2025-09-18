@@ -28,15 +28,6 @@ import {
 
 @ApiTags('Users')
 @UseGuards(RolesGuard)
-@ApiHeader({
-  name: 'x-role',
-  description: 'User role (must be "admin" to access these routes)',
-  required: true,
-  schema: {
-    type: 'string',
-    example: 'admin',
-  },
-})
 @Roles('admin')
 @Controller('users')
 export class UsersController {
@@ -44,6 +35,15 @@ export class UsersController {
 
   @Post()
   @UseInterceptors(AdminInterceptor)
+  @ApiHeader({
+    name: 'role',
+    description: 'User role header (must be "admin" to access/admin actions)',
+    required: true,
+    schema: {
+      type: 'string',
+      example: 'admin',
+    },
+  })
   @ApiOperation({ summary: 'Create a new user' })
   @ApiBody({
     schema: {
@@ -54,7 +54,7 @@ export class UsersController {
         password: { type: 'string', example: '123456' },
         role: {
           type: 'string',
-          example: 'developer or BD (if admin is creating the user)',
+          example: 'developer or BD (assigned by admin)',
         },
       },
       required: ['name', 'email', 'password'],
