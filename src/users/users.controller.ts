@@ -39,10 +39,6 @@ export class UsersController {
     name: 'role',
     description: 'User role header (must be "admin" to access/admin actions)',
     required: true,
-    schema: {
-      type: 'string',
-      example: 'admin',
-    },
   })
   @ApiOperation({ summary: 'Create a new user' })
   @ApiBody({
