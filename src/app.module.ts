@@ -2,12 +2,9 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { JobsModule } from './jobs/jobs.module';
 import { InterviewsModule } from './interviews/interviews.module';
-import { MailerModule } from '@nestjs-modules/mailer';
-import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
-import { join } from 'path';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { MailsModule } from './mails/mails.module';
 
@@ -17,7 +14,7 @@ import { MailsModule } from './mails/mails.module';
 
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: process.env.DATABASE_URL, 
+      url: process.env.DATABASE_URL,
       autoLoadEntities: true,
       synchronize: false,
       migrationsRun: true,
@@ -25,6 +22,7 @@ import { MailsModule } from './mails/mails.module';
       ssl: {
         rejectUnauthorized: false,
       },
+      logging: true,
     }),
 
     UsersModule,
